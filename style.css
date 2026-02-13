@@ -89,13 +89,13 @@ p {
     width: 180px;
 }
 /* buttons */
-.button {
+.buttons { 
     display: flex;
     justify-content: center;
-    gap: 30px;
-    position: relative;
+    gap: 20px; /* Space between buttons */
+    margin-top: 20px;
+    width: 100%;
 }
-
 .no-wrap {
     position: relative;
 }

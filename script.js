@@ -1,73 +1,36 @@
-//Elements
 const envelope = document.getElementById("envelope-container");
 const letter = document.getElementById("letter-container");
 const noBtn = document.querySelector(".no-btn");
-const yesBtn = document.querySelector(".btn[alt='Yes']");
-
+const yesBtn = document.querySelector(".yes-btn"); // Ensure HTML has class="btn yes-btn"
 const title = document.getElementById("letter-title");
 const catImg = document.getElementById("letter-cat");
 const buttons = document.getElementById("letter-buttons");
 const finalText = document.getElementById("final-text");
 
-//Click envelope
-
-envelope.addEventListener("click", ()=>{
+// Open Letter
+envelope.addEventListener("click", () => {
     envelope.style.display = "none";
     letter.style.display = "flex";
-
-    setTimeout( ()=>{
+    setTimeout(() => {
         document.querySelector(".letter-window").classList.add("open");
-    },50);
+    }, 50);
 });
 
-//Logic to make YES btn to grow
-
+// GROWING LOGIC
 let yesScale = 1;
-yesBtn.style.position = "relative";
-yesBtn.style.transformOrigin = "center center";
-yesBtn.style.trasition = "transform 0.3s ease";
 
-noBtn.addEventListener("click", () =>{
-    yesScale +=2;
-
-    if(yesBtn.style.position !== fixed) {
-        yesBtn.style.position = "fixed";
-        yesBtn.style.top = "50%";
-        yesBtn.style.left = "50%";
-        yesBtn.style.trasform = `translate(-50%, -50%) scale(${yesScale})`;
-
-    }
-    else{
-        yesBtn.style.trasform = `translate(-50%, -50%) scale(${yesScale})`;
-    }
-});
-
-//YES is clicked
-
-yesBtn.addEventListener("click", () =>{
-    title.textContent = "Yippeeee!";
-
-    catImg.src = "cat_dance.gif";
-
-    document.querySelector(".letter-window").classList.add("final");
-
-    buttons.style.display = "none";
-
-    finalText.style.display = "block";
-});
-
-//Logic to move the NO btn
-
-noBtn.addEventListener("mouseover", () =>{
-    const min = 200;
-    const max = 200;
-
-    const distance = Math.random()* (max-min) + min;
-    const angle = Math.random() * Math.PI * 2;
+noBtn.addEventListener("click", () => {
+    yesScale += 0.5; // Grow by 50% each click
+    yesBtn.style.transform = `scale(${yesScale})`;
     
-    const moveX = Math.cos(angle) * distance;
-    const moveY = Math.sin(angle) * distance;
+    // Optional: Make No button disappear after a few clicks
+    // if(yesScale > 3) noBtn.style.display = "none"; 
+});
 
-    noBtn.style.trasition = "transform 0.3s ease";
-    noBtn.style.trasform = `translate(${moveX}px, ${moveY}px)`;
+// WINNER LOGIC
+yesBtn.addEventListener("click", () => {
+    title.textContent = "Yippeeee!";
+    catImg.src = "cat_dance.gif";
+    buttons.style.display = "none"; // Hide buttons
+    finalText.style.display = "block"; // Show date details
 });
