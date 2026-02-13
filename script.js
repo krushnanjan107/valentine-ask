@@ -1,13 +1,14 @@
 const envelope = document.getElementById("envelope-container");
 const letter = document.getElementById("letter-container");
 const noBtn = document.querySelector(".no-btn");
-const yesBtn = document.querySelector(".yes-btn"); // Ensure HTML has class="btn yes-btn"
+const yesBtn = document.querySelector(".yes-btn");
+
 const title = document.getElementById("letter-title");
 const catImg = document.getElementById("letter-cat");
 const buttons = document.getElementById("letter-buttons");
 const finalText = document.getElementById("final-text");
 
-// Open Letter
+// Open Envelope
 envelope.addEventListener("click", () => {
     envelope.style.display = "none";
     letter.style.display = "flex";
@@ -16,21 +17,18 @@ envelope.addEventListener("click", () => {
     }, 50);
 });
 
-// GROWING LOGIC
+// Growing Logic
 let yesScale = 1;
 
 noBtn.addEventListener("click", () => {
-    yesScale += 0.5; // Grow by 50% each click
+    yesScale += 1.5; // Big growth per click
     yesBtn.style.transform = `scale(${yesScale})`;
-    
-    // Optional: Make No button disappear after a few clicks
-    // if(yesScale > 3) noBtn.style.display = "none"; 
 });
 
-// WINNER LOGIC
+// Victory Logic
 yesBtn.addEventListener("click", () => {
     title.textContent = "Yippeeee!";
     catImg.src = "cat_dance.gif";
-    buttons.style.display = "none"; // Hide buttons
-    finalText.style.display = "block"; // Show date details
+    buttons.style.display = "none";
+    finalText.style.display = "block";
 });
